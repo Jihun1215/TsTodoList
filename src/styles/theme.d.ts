@@ -8,6 +8,7 @@ declare module "styled-components" {
     FlexCol;
     FlexRow;
     FlexCenter;
+    DisFlexCenter;
     bgColor: string;
     bgColor2: string;
     color: string;
@@ -15,7 +16,7 @@ declare module "styled-components" {
     white:  string;
     black:  string;
     gray:   string;
-    yellow: string;
+    orange: string;
     primary_easy: string,
     primary_normal:  string;
     primary_strong: string;

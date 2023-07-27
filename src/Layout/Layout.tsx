@@ -27,8 +27,6 @@ const Continer = styled.div`
   ${props => props.theme.FlexCenter};
   background-color: ${props => props.theme.bgColor};
   color: ${props => props.theme.color};
-  border: 1px solid red;
-
 `;
 
 
@@ -37,6 +35,5 @@ const HomeContainer = styled.div`
   height: 95%;
   ${props => props.theme.FlexCol};
   gap: 100px 0;
-  border: 1px solid red;
 `;
 

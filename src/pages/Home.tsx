@@ -13,7 +13,9 @@ const Home = () => {
       <WebViewLine/>
       <Thisweek/>
     </WebViewContainer>
-    <MobileViewContainer>모바일뷰</MobileViewContainer>
+    <MobileViewContainer>
+    <TodoList/>
+    </MobileViewContainer>
     </>
   )
 }
@@ -49,7 +51,7 @@ const MobileViewContainer = styled.div`
     padding: 1rem;
     /* width: 26.25rem;
   height: 90vh; */
-   border: 1px solid blue;
+
   }
  
 `;

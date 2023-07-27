@@ -5,7 +5,7 @@ const colorTheme: DefaultTheme = {
     white: "#ffffff",
     black: "#000000",
     gray:  "#495057",
-    yellow: "#F8c707",
+    orange: "#FF7A00",
     Alternative: '#8A8A8A',
     primary_easy: "#F7FFE5",
     primary_normal: "#E1ECC8",
@@ -14,7 +14,7 @@ const colorTheme: DefaultTheme = {
     primary_altemative: "#FFC672",
     primary_assistive: "#FFE4BC",
     dark_beige: "AA9178",
-}
+};
 
 const WH100 = css`
   width: 100%;
@@ -36,12 +36,19 @@ const FlexCenter = css`
   align-items: center;
 `;
 
+const DisFlexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const theme = { 
     colorTheme,
     WH100,
     FlexCol,
     FlexRow,
-    FlexCenter
+    FlexCenter,
+    DisFlexCenter
 }
 
 export const Theme: DefaultTheme = {
