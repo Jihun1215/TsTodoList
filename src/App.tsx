@@ -6,6 +6,7 @@ import { Theme,DarkTheme  } from './styles/theme';
 import { GlobalStyle } from './styles/Globalstyle';
 import { useRecoilState } from 'recoil';
 import {DarkModeToggleState} from "./atoms"
+import Layout from './layout/Layout';
 
 function App() {
 
@@ -17,12 +18,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
-      <Continer>
-        <HomeContainer>
-        
-        </HomeContainer>
-      </Continer>
- 
+        <Layout children={undefined}/>
       </ThemeProvider>
     </>
   );
@@ -31,22 +27,3 @@ function App() {
 export default App;
 
 
-const Continer = styled.div`
-  width: 100%;
-  ${props => props.theme.FlexRow};
-  ${props => props.theme.FlexCenter};
-  background-color: ${props => props.theme.bgColor};
-  color: ${props => props.theme.color};
-  border: 1px solid red;
-
-`;
-
-
-const HomeContainer = styled.div`
-  width: 80%;
-  height: 4000px;
-  ${props => props.theme.FlexCol};
-  gap: 100px 0;
-  border: 1px solid red;
-
-`;
