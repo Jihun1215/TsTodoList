@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import TodoList from '../components/TodoList'
+import Todo from '../components/Todo'
 import Thisweek from '../components/Thisweek'
 
 
@@ -9,12 +9,12 @@ const Home = () => {
   return (
     <>
     <WebViewContainer>
-      <TodoList/>
+      <Todo/>
       <WebViewLine/>
       <Thisweek/>
     </WebViewContainer>
     <MobileViewContainer>
-    <TodoList/>
+    <Todo/>
     </MobileViewContainer>
     </>
   )

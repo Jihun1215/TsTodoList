@@ -5,12 +5,11 @@ const colorTheme: DefaultTheme = {
     white: "#ffffff",
     black: "#000000",
     gray:  "#495057",
-    orange: "#FF7A00",
     Alternative: '#8A8A8A',
     primary_easy: "#F7FFE5",
-    primary_normal: "#E1ECC8",
-    primary_strong: "#C4D7B2",
-    primary_heavy: "#A0C49D",
+    primary_normal: "#FF9900",
+    primary_strong: "#FF8A00",
+    primary_heavy: "#FF7A00",
     primary_altemative: "#FFC672",
     primary_assistive: "#FFE4BC",
     dark_beige: "AA9178",
@@ -42,13 +41,36 @@ const DisFlexCenter = css`
   align-items: center;
 `;
 
+// Text Style
+const Text_700_18 = css`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+`;
+
+const Text_700_16 = css`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+const Text_400_12 = css`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+`;
+
+
 const theme = { 
     colorTheme,
     WH100,
     FlexCol,
     FlexRow,
     FlexCenter,
-    DisFlexCenter
+    DisFlexCenter,
+    Text_700_18,
+    Text_700_16,
+    Text_400_12
 }
 
 export const Theme: DefaultTheme = {
