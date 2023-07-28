@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from 'styled-components'
 import Todo from '../components/Todo'
 import Thisweek from '../components/Thisweek'
+import Sidebar from '../components/Sidebar'
 
 
 
@@ -12,9 +13,11 @@ const Home = () => {
       <Todo/>
       <WebViewLine/>
       <Thisweek/>
+      <Sidebar/>
     </WebViewContainer>
     <MobileViewContainer>
     <Todo/>
+    <Sidebar/>
     </MobileViewContainer>
     </>
   )
@@ -37,9 +40,6 @@ const WebViewLine = styled.div`
   height: 90%;
   border-left: 1px solid ${props => props.theme.color};
 `;
-
-
-
 
 const MobileViewContainer = styled.div`
   display: none;
