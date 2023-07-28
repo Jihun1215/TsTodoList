@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { DarkModeToggleState } from "../atoms"
 import { BsMoon } from "react-icons/bs"
 import { BsSun } from "react-icons/bs"
+import { AiOutlineArrowUp } from "react-icons/ai"
 
 const Sidebar = () => {
 
@@ -25,7 +26,9 @@ const Sidebar = () => {
             mode ? <BsMoon /> : <BsSun />
           }
         </SidebarModeButton>
-        <SidebarGoupButton onClick={onClickScrollToTop}>2</SidebarGoupButton>
+        <SidebarGoupButton onClick={onClickScrollToTop}>
+            <AiOutlineArrowUp/>
+        </SidebarGoupButton>
     </SidebarContiner>
   )
 }
@@ -36,7 +39,6 @@ const SidebarContiner = styled.div`
     position: fixed;
     bottom: 20px;
     right: 10px;
-    border: 1px solid red;
     width: 100px;
     height: 50px;
     ${props => props.theme.FlexRow};
@@ -55,7 +57,7 @@ const SidebarModeButton = styled.button<{ mode: boolean | string }>`
     color: ${props => props.theme.bgColor};
     ${props => props.theme.FlexCol}
     ${props => props.theme.FlexCenter}
-    font-size: 20px;
+    font-size: 25px;
     &:hover{
         transform: scale(1.05);
     }
