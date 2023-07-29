@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Button } from '../element/Button';
+import { Data } from '../tododata';
 
 const TodoList = () => {
   const today: Date = new Date();
@@ -16,6 +17,7 @@ const TodoList = () => {
     }
   }, []);
     
+  console.log(Data)
 
   return (
     <TodoListContiner>

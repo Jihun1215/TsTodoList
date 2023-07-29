@@ -6,7 +6,7 @@ import TodoList from './TodoList'
 const Todo = () => {
   return (
     <TodoContiner>
-      
+
         <TodoForm/>
         <TodoList/>
 
@@ -27,6 +27,5 @@ const TodoContiner= styled.div`
     @media screen and (max-width: 650px) {
       width: 100%;
       height: 90vh;
-      
     }
 `;

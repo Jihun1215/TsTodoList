@@ -32,22 +32,25 @@ const TodoForm: React.FC = () => {
   const ThisDay = `${ today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 
   const onSubmitTodo:SubmitHandler<Fromvalue> = (data) =>{
+    console.log(data)
     reset();
 
-      // 기존 로컬 스토리지 값 가져오기
-  const todoListGet: string | null = localStorage.getItem(ThisDay);
-  if(todoListGet !== null && todoListGet.length < 5){
-    alert("5개 초과 하였습니다!")
-  }else{
-    // 기존 값이 null이면 빈 배열로 초기화
-  const copyArr = todoListGet ? JSON.parse(todoListGet) : [];
+  //     // 기존 로컬 스토리지 값 가져오기
+  // const todoListGet: string | null = localStorage.getItem(ThisDay);
+  //     if(todoListGet !== null && todoListGet.length < 5){
+  //        alert("5개 초과 하였습니다!")
+  //       reset();
+  //       }else{
+  //       // 기존 값이 null이면 빈 배열로 초기화
+  //       const copyArr = todoListGet ? JSON.parse(todoListGet) : [];
 
-  // 새로운 값 추가
-  copyArr.push(data.todo);
+  //       // 새로운 값 추가
+  //       copyArr.push(data.todo);
 
-  // 로컬 스토리지에 저장
-  localStorage.setItem(ThisDay, JSON.stringify(copyArr));
-  };
+  //       // 로컬 스토리지에 저장
+  //       localStorage.setItem(ThisDay, JSON.stringify(copyArr));
+  //       reset();
+  // };
 
   }
   
