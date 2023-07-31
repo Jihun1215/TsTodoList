@@ -28,8 +28,11 @@ const Todo= () => {
 
 
   const onClickDeleteTodo = (id:number) => {
+
+    if (window.confirm("정말로 이 작업을 수행하시겠습니까?")) {
     const updatedTodoData = todoItem.filter((item:any) => item.itemId !== id);
     setTodoItem(updatedTodoData)
+      } 
   } 
 
   const onClickChckeTodo = (id:number) =>{
