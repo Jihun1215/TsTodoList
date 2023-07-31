@@ -6,6 +6,7 @@ import { toUp } from '../styles/Animation'
 type ButtonProps = {
   children: string,
   type?: string,
+  onClick?: any,
   // disabled: string,
   isactive?: boolean,
   sm: boolean ,

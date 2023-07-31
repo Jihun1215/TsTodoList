@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import Todo from '../components/Todo'
+import TodoBox from '../components/TodoBox'
 import Thisweek from '../components/Thisweek'
 import Sidebar from '../components/Sidebar'
 
@@ -10,13 +10,13 @@ const Home = () => {
   return (
     <>
     <WebViewContainer>
-      <Todo/>
+      <TodoBox/>
       <WebViewLine/>
       <Thisweek/>
       <Sidebar/>
     </WebViewContainer>
     <MobileViewContainer>
-    <Todo/>
+    <TodoBox/>
     <Sidebar/>
     </MobileViewContainer>
     </>

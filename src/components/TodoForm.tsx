@@ -2,6 +2,11 @@ import React, { useState,useEffect } from 'react'
 import { styled } from 'styled-components'
 import { Button } from '../element/Button';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { Item } from '../types/type';
+import { useRecoilState  } from 'recoil';
+import { todoItemState } from "../atoms"
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 type Fromvalue = {
@@ -9,6 +14,8 @@ type Fromvalue = {
 }
 
 const TodoForm: React.FC = () => {
+  const [todoItem , setTodoItem ] = useRecoilState<Item[]>(todoItemState)
+  // console.log(todoItem)
 
   const {
     register,
@@ -28,30 +35,25 @@ const TodoForm: React.FC = () => {
   }, [watch()]);
  
 
-  const today: Date = new Date();
-  const ThisDay = `${ today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+  // const today: Date = new Date();
+  // const ThisDay = `${ today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+
 
   const onSubmitTodo:SubmitHandler<Fromvalue> = (data) =>{
-    console.log(data)
-    reset();
 
-  //     // 기존 로컬 스토리지 값 가져오기
-  // const todoListGet: string | null = localStorage.getItem(ThisDay);
-  //     if(todoListGet !== null && todoListGet.length < 5){
-  //        alert("5개 초과 하였습니다!")
-  //       reset();
-  //       }else{
-  //       // 기존 값이 null이면 빈 배열로 초기화
-  //       const copyArr = todoListGet ? JSON.parse(todoListGet) : [];
-
-  //       // 새로운 값 추가
-  //       copyArr.push(data.todo);
-
-  //       // 로컬 스토리지에 저장
-  //       localStorage.setItem(ThisDay, JSON.stringify(copyArr));
-  //       reset();
-  // };
-
+    if(todoItem.length > 5){
+      alert("5개 까지 등록 가능합니다.")
+      reset()
+    }else{
+      const newTodo: Item = {
+        itemId: uuidv4(),
+        title: data.todo,
+        isDone: false,
+      };
+      setTodoItem([...todoItem, newTodo]);
+      reset()
+    }
+   
   }
   
   return (
