@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
-import { Button } from '../element/Button';
-// import { Data,  } from '../tododata';
 import Todo from './Todo';
-import { Item } from '../types/type';
 
 
 
@@ -31,8 +28,9 @@ export default TodoList
 const TodoListContiner = styled.div`
     width: 95%;
     height: 100%;
-    border: 1px solid red;
+    background-color: ${props => props.theme.color2};
     ${props => props.theme.FlexCol};
     align-items: center;
+    border-radius: 14px;
 `;
 

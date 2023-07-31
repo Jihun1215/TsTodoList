@@ -9,10 +9,11 @@ type ButtonProps = {
   onClick?: any,
   // disabled: string,
   isactive?: boolean,
-  sm: boolean ,
+  sm?: boolean ,
   me?: boolean,
   lg?: boolean,
   xlg?: boolean,
+  isdone?: boolean,
 }
 
 
@@ -68,5 +69,14 @@ const BtnStyle = styled.button<ButtonProps>`
         font-size: 18px;
         ${props => props.theme.Text_700_18}
     `}; 
+    ${(props) =>
+    props.isdone &&
+    css`   
+        width: 4.6875rem;
+        height: 1.875rem;
+        ${props => props.theme.Text_400_12}
+        background-color: ${props => props.theme.colorTheme.green};
+    `}; 
+
 
 `;

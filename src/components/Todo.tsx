@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { styled } from 'styled-components';
-// import { TodoDateType } from '../tododata';
 import { Button } from '../element/Button';
 import { toUp } from '../styles/Animation';
 import { Item } from '../types/type';
@@ -41,10 +40,23 @@ const Todo= () => {
             return { ...item }
         }
     })
-    // 바뀐부분 재렌더링
     setTodoItem(newTodos)
   }
 
+  const [clearTodos, setClearTodos] = useState<Item[]>([]);
+  
+
+  useEffect(()=>{
+    const Todos= todoItem.filter((item:any) => item.isDone);
+    setClearTodos(Todos)
+
+  },[todoItem])
+  
+
+  const calculateCompletionPercentage = () => {
+    if (todoItem.length === 0) return 0;
+    return (clearTodos.length / todoItem.length) * 100;
+  };
 
   return (
     <>
@@ -54,13 +66,20 @@ const Todo= () => {
             return (<TodoListBox id={item.itemId} isDone={item.isDone}>
                 {item.title}
                 <Button sm onClick={()=> onClickDeleteTodo(item.itemId)}>삭제</Button>
-                <Button sm onClick={()=> onClickChckeTodo(item.itemId)}>
-                {item.isDone ? "취 소" : "완 료"}
-                </Button>
+
+                {item.isDone ?  <Button sm  onClick={()=> onClickChckeTodo(item.itemId)}>되 돌리기</Button>
+                :  <Button isdone onClick={()=> onClickChckeTodo(item.itemId)}>성 공</Button>
+                 }
             </TodoListBox>)
         })
     ) : <div>없다.</div>
    }
+
+    <TodoPercentBox>
+   <p>{calculateCompletionPercentage()}%</p> 
+    <TodoPercent type="range" min="0" max="100" step="10" value={calculateCompletionPercentage()} />
+    </TodoPercentBox>
+
     </>
   );
 };
@@ -74,4 +93,25 @@ const TodoListBox = styled.div<TodoListBoxProps>`
     height: 4.375rem;
     border:1px solid  ${props => props.theme.colorTheme.primary_normal};
     animation: ${toUp} 0.25s ease-in-out;
+`;
+
+const TodoPercentBox = styled.div`
+ position: relative;
+ margin: 40px;
+ width: 90%;
+ height: 4.375rem;
+ animation: ${toUp} 0.25s ease-in-out;
+ border: 1px solid red;
+ ${props => props.theme.FlexRow};
+ ${props => props.theme.FlexCenter};
+ > p {
+    position: absolute;
+    top: 5px;
+ }
+`;
+
+const TodoPercent= styled.input`
+    border: 1px solid red;
+    width: 50%;
+    height: 30%;
 `;

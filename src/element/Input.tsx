@@ -29,7 +29,7 @@ const InputStyle = styled.input<InputProps>`
   outline: none;
   background: #5c7cfa;
   cursor: pointer;
-  color: white;
+  color: ${props => props.theme.colorTheme.black};
   display: flex;
   align-items: center;
   justify-content: center;

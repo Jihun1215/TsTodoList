@@ -19,6 +19,7 @@ declare module "styled-components" {
     white:  string;
     black:  string;
     gray:   string;
+    green: string,
     primary_easy: string,
     primary_normal:  string;
     primary_strong: string;

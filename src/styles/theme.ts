@@ -5,6 +5,7 @@ const colorTheme: DefaultTheme = {
     white: "#ffffff",
     black: "#000000",
     gray:  "#495057",
+    green: "#A0C49D",
     Alternative: '#8A8A8A',
     primary_easy: "#F7FFE5",
     primary_normal: "#FF9900",
@@ -86,5 +87,5 @@ export const DarkTheme: DefaultTheme = {
     bgColor: '#1e1e1e',
     bgColor2: '#282c34',
     color: '#E2E2E2',
-    color2: '#191A23',
+    color2: '#495057',
 }

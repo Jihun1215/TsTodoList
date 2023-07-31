@@ -6,6 +6,7 @@ import { Item } from '../types/type';
 import { useRecoilState  } from 'recoil';
 import { todoItemState } from "../atoms"
 import { v4 as uuidv4 } from 'uuid';
+import { toUp } from '../styles/Animation';
 
 
 
@@ -95,8 +96,8 @@ export default TodoForm
 const FormWrapper = styled.form`
   width: 95%;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 14px;
+  background-color: ${props => props.theme.color2};
 `;
 
 const InputWrapper = styled.div`
@@ -112,6 +113,13 @@ const InputWrapper = styled.div`
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: ${props => props.theme.colorTheme.black};
+    ${props => props.theme.FlexRow};
+    ${props => props.theme.FlexCenter}
+    animation: ${toUp} 0.25s ease-in-out;
   }
 
   p {

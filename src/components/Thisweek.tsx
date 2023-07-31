@@ -13,4 +13,5 @@ const ThisWeekContiner = styled.div`
     width: 40%;
     height: 80%;
     border: 1px solid red;
+    display: none;
 `;
