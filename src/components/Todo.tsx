@@ -67,8 +67,8 @@ const Todo= () => {
                 {item.title}
                 <Button sm onClick={()=> onClickDeleteTodo(item.itemId)}>삭제</Button>
 
-                {item.isDone ?  <Button sm  onClick={()=> onClickChckeTodo(item.itemId)}>되 돌리기</Button>
-                :  <Button isdone onClick={()=> onClickChckeTodo(item.itemId)}>성 공</Button>
+                {item.isDone ?  <Button istrue onClick={()=> onClickChckeTodo(item.itemId)}>되 돌리기</Button>
+                :  <Button isfalse onClick={()=> onClickChckeTodo(item.itemId)}>성 공</Button>
                  }
             </TodoListBox>)
         })

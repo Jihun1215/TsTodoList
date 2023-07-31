@@ -6,6 +6,8 @@ const colorTheme: DefaultTheme = {
     black: "#000000",
     gray:  "#495057",
     green: "#A0C49D",
+    skyblue: "#93bfcf",
+    red: "#fa7070",
     Alternative: '#8A8A8A',
     primary_easy: "#F7FFE5",
     primary_normal: "#FF9900",

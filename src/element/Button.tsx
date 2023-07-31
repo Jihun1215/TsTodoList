@@ -13,7 +13,8 @@ type ButtonProps = {
   me?: boolean,
   lg?: boolean,
   xlg?: boolean,
-  isdone?: boolean,
+  isfalse?: boolean,
+  istrue?: boolean,
 }
 
 
@@ -70,12 +71,20 @@ const BtnStyle = styled.button<ButtonProps>`
         ${props => props.theme.Text_700_18}
     `}; 
     ${(props) =>
-    props.isdone &&
+    props.isfalse &&
     css`   
         width: 4.6875rem;
         height: 1.875rem;
         ${props => props.theme.Text_400_12}
-        background-color: ${props => props.theme.colorTheme.green};
+        background-color: ${props => props.theme.colorTheme.skyblue};
+    `}; 
+    ${(props) =>
+    props.istrue &&
+    css`   
+        width: 4.6875rem;
+        height: 1.875rem;
+        ${props => props.theme.Text_400_12}
+        background-color: ${props => props.theme.colorTheme.red};
     `}; 
 
 
