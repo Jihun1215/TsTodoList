@@ -43,7 +43,7 @@ const TodoForm: React.FC = () => {
   const onSubmitTodo:SubmitHandler<Fromvalue> = (data) =>{
 
     if(todoItem.length > 5){
-      alert("5개 까지 등록 가능합니다.")
+      alert("6개 까지 등록 가능합니다.")
       reset()
     }else{
       const newTodo: Item = {
