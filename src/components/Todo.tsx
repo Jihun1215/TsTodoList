@@ -1,25 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { Button } from '../element/Button';
 import { toUp } from '../styles/Animation';
 import { Item } from '../types/type';
-import { useRecoilState  } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { todoItemState } from "../atoms"
 
 
 interface TodoListBoxProps {
-    id: number;
-    isDone: boolean;
-    children: React.ReactNode;
-  }
+  id: number;
+  isDone: boolean;
+  children: React.ReactNode;
+}
 
-const Todo= () => {
-    const [todoItem , setTodoItem ] = useRecoilState<Item[]>(todoItemState)
-    // console.log(todoItem)
-  
+const Todo = () => {
+  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
+  // console.log(todoItem)
 
 
-      // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
+
+  // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
   const today: Date = new Date();
   const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const todoListGet = localStorage.getItem(ThisDay);
@@ -27,34 +27,34 @@ const Todo= () => {
 
 
 
-  const onClickDeleteTodo = (id:number) => {
+  const onClickDeleteTodo = (id: number) => {
 
     if (window.confirm("정말로 이 작업을 수행하시겠습니까?")) {
-    const updatedTodoData = todoItem.filter((item:any) => item.itemId !== id);
-    setTodoItem(updatedTodoData)
-      } 
-  } 
+      const updatedTodoData = todoItem.filter((item: any) => item.itemId !== id);
+      setTodoItem(updatedTodoData)
+    }
+  }
 
-  const onClickChckeTodo = (id:number) =>{
-    const newTodos = todoItem.map((item:any) => {
-        if (item.itemId === id) {
-            return { ...item, isDone: !item.isDone }
-        } else {
-            return { ...item }
-        }
+  const onClickChckeTodo = (id: number) => {
+    const newTodos = todoItem.map((item: any) => {
+      if (item.itemId === id) {
+        return { ...item, isDone: !item.isDone }
+      } else {
+        return { ...item }
+      }
     })
     setTodoItem(newTodos)
   }
 
   const [clearTodos, setClearTodos] = useState<Item[]>([]);
-  
 
-  useEffect(()=>{
-    const Todos= todoItem.filter((item:any) => item.isDone);
+
+  useEffect(() => {
+    const Todos = todoItem.filter((item: any) => item.isDone);
     setClearTodos(Todos)
 
-  },[todoItem])
-  
+  }, [todoItem])
+
 
   const calculateCompletionPercentage = () => {
     if (todoItem.length === 0) return 0;
@@ -63,25 +63,27 @@ const Todo= () => {
 
   return (
     <>
-   {
-    todoItem.length > 0 ? (
-        todoItem.map((item:any)=>{
+      {
+        todoItem.length > 0 ? (
+          todoItem.map((item: any) => {
             return (<TodoListBox id={item.itemId} isDone={item.isDone}>
-                {item.title}
-                <Button sm onClick={()=> onClickDeleteTodo(item.itemId)}>삭제</Button>
+              <h4>{item.title}</h4>
+              <div>
+                <Button sm onClick={() => onClickDeleteTodo(item.itemId)}>삭제</Button>
+                {item.isDone ? <Button istrue onClick={() => onClickChckeTodo(item.itemId)}>되 돌리기</Button>
+                  : <Button isfalse onClick={() => onClickChckeTodo(item.itemId)}>성 공</Button>
+                }
+              </div>
 
-                {item.isDone ?  <Button istrue onClick={()=> onClickChckeTodo(item.itemId)}>되 돌리기</Button>
-                :  <Button isfalse onClick={()=> onClickChckeTodo(item.itemId)}>성 공</Button>
-                 }
             </TodoListBox>)
-        })
-    ) : <div>없다.</div>
-   }
+          })
+        ) : <div>없다.</div>
+      }
 
-    <TodoPercentBox>
-   <p>{calculateCompletionPercentage()}%</p> 
-    <TodoPercent type="range" min="0" max="100" step="10" value={calculateCompletionPercentage()} />
-    </TodoPercentBox>
+      <TodoPercentBox>
+        <p>{calculateCompletionPercentage()}%</p>
+        <TodoPercent type="range" min="0" max="100" step="10" value={calculateCompletionPercentage()} />
+      </TodoPercentBox>
 
     </>
   );
@@ -94,8 +96,25 @@ const TodoListBox = styled.div<TodoListBoxProps>`
     margin-top: 10px;
     width: 90%;
     height: 4.375rem;
-    border:1px solid  ${props => props.theme.colorTheme.primary_normal};
+    background-color:#adb5bd;
     animation: ${toUp} 0.25s ease-in-out;
+    border-radius: 14px;
+    padding: 0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+    > h4 {
+      width: 100%;
+      height: 50%;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    > div {
+      width: 100%;
+      height: 50%;
+      ${props => props.theme.FlexRow};
+      justify-content: right;
+      gap: 0 10px;
+    }
 `;
 
 const TodoPercentBox = styled.div`
@@ -104,7 +123,7 @@ const TodoPercentBox = styled.div`
  width: 90%;
  height: 4.375rem;
  animation: ${toUp} 0.25s ease-in-out;
- border: 1px solid red;
+ /* border: 1px solid red; */
  ${props => props.theme.FlexRow};
  ${props => props.theme.FlexCenter};
  > p {
@@ -113,7 +132,7 @@ const TodoPercentBox = styled.div`
  }
 `;
 
-const TodoPercent= styled.input`
+const TodoPercent = styled.input`
     border: 1px solid red;
     width: 50%;
     height: 30%;
