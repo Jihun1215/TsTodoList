@@ -8,27 +8,27 @@ import { AiOutlineArrowUp } from "react-icons/ai"
 
 const Sidebar = () => {
 
-    const [mode, setMode] = useRecoilState<boolean>(DarkModeToggleState);
+  const [mode, setMode] = useRecoilState<boolean>(DarkModeToggleState);
 
-      // 다크모드 변경 함수
-    const onClickModeToggle = () =>{
-      setMode((mode) => !mode);
-    }
+  // 다크모드 변경 함수
+  const onClickModeToggle = () => {
+    setMode((mode) => !mode);
+  }
 
-    const onClickScrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      };
+  const onClickScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <SidebarContiner>
-        <SidebarModeButton onClick={onClickModeToggle} mode={mode.toString()}>
-          {
-            mode ? <BsMoon /> : <BsSun />
-          }
-        </SidebarModeButton>
-        <SidebarGoupButton onClick={onClickScrollToTop}>
-            <AiOutlineArrowUp/>
-        </SidebarGoupButton>
+      <SidebarModeButton onClick={onClickModeToggle} mode={mode.toString()}>
+        {
+          mode ? <BsMoon /> : <BsSun />
+        }
+      </SidebarModeButton>
+      <SidebarGoupButton onClick={onClickScrollToTop}>
+        <AiOutlineArrowUp />
+      </SidebarGoupButton>
     </SidebarContiner>
   )
 }

@@ -15,17 +15,12 @@ interface TodoListBoxProps {
 
 const Todo = () => {
   const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
-  // console.log(todoItem)
-
-
 
   // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
-  const today: Date = new Date();
-  const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-  const todoListGet = localStorage.getItem(ThisDay);
-  const todoData = todoListGet ? JSON.parse(todoListGet) : [];
-
-
+  // const today: Date = new Date();
+  // const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  // const todoListGet = localStorage.getItem(ThisDay);
+  // const todoData = todoListGet ? JSON.parse(todoListGet) : [];
 
   const onClickDeleteTodo = (id: number) => {
 
@@ -101,7 +96,6 @@ const TodoListBox = styled.div<TodoListBoxProps>`
     border-radius: 14px;
     padding: 0.5rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
     > h4 {
       width: 100%;
       height: 50%;
@@ -123,7 +117,6 @@ const TodoPercentBox = styled.div`
  width: 90%;
  height: 4.375rem;
  animation: ${toUp} 0.25s ease-in-out;
- /* border: 1px solid red; */
  ${props => props.theme.FlexRow};
  ${props => props.theme.FlexCenter};
  > p {
