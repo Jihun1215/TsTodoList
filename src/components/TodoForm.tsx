@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { Button } from '../element/Button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Item } from '../types/type';
-import { useRecoilState  } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { todoItemState } from "../atoms"
 import { v4 as uuidv4 } from 'uuid';
 import { toUp } from '../styles/Animation';
@@ -15,7 +15,7 @@ type Fromvalue = {
 }
 
 const TodoForm: React.FC = () => {
-  const [todoItem , setTodoItem ] = useRecoilState<Item[]>(todoItemState)
+  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
   // console.log(todoItem)
 
   const {
@@ -31,21 +31,21 @@ const TodoForm: React.FC = () => {
   const [isActive, setIsActive] = useState<boolean>(true);
 
   useEffect(() => {
-    if (watch("todo") == "" )setIsActive(true);
+    if (watch("todo") == "") setIsActive(true);
     else setIsActive(false);
   }, [watch()]);
- 
+
 
   // const today: Date = new Date();
   // const ThisDay = `${ today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 
+  // console.log(todoItem)
+  const onSubmitTodo: SubmitHandler<Fromvalue> = (data) => {
 
-  const onSubmitTodo:SubmitHandler<Fromvalue> = (data) =>{
-
-    if(todoItem.length > 5){
+    if (todoItem.length >= 6) {
       alert("6개 까지 등록 가능합니다.")
       reset()
-    }else{
+    } else {
       const newTodo: Item = {
         itemId: uuidv4(),
         title: data.todo,
@@ -54,40 +54,40 @@ const TodoForm: React.FC = () => {
       setTodoItem([...todoItem, newTodo]);
       reset()
     }
-   
+
   }
-  
+
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmitTodo)}>
-  
-        <InputWrapper>
-          <label htmlFor="todo">할일:</label>
-          <input 
-            type='text'
-            placeholder="할 일을 입력해주세요"
-            {...register('todo', {
+
+      <InputWrapper>
+        <label htmlFor="todo">할일:</label>
+        <input
+          type='text'
+          placeholder="할 일을 입력해주세요"
+          {...register('todo', {
             pattern: {
-                  value: /^[가-힣\s]+$/,
-                  message: "한글만 입력하세용",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "20글자 이내로 입력해주세요",
-                },
-          
-            })}
-            />
-           {errors.todo && <p>{errors.todo.message}</p>}
-        </InputWrapper>
-    
-    {
-      isActive ? <Button sm isactive type='button' >값 입력 X</Button>: 
-        <Button sm type="submit" >제출</Button>
-    } 
+              value: /^[가-힣\s]+$/,
+              message: "한글만 입력하세용",
+            },
+            maxLength: {
+              value: 20,
+              message: "20글자 이내로 입력해주세요",
+            },
 
-      
+          })}
+        />
+        {errors.todo && <p>{errors.todo.message}</p>}
+      </InputWrapper>
 
-  </FormWrapper>
+      {
+        isActive ? <Button sm isactive type='button' >값 입력 X</Button> :
+          <Button sm type="submit" >제출</Button>
+      }
+
+
+
+    </FormWrapper>
   )
 }
 

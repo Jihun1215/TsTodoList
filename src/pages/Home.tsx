@@ -51,8 +51,6 @@ const MobileViewContainer = styled.div`
     padding: 1rem;
     width: 26.25rem;
     height: 90vh;
-    border: 1px solid red;
-
   }
  
 `;

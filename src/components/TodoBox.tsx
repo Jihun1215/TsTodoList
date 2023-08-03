@@ -16,7 +16,7 @@ export default TodoBox
 
 const TodoContiner = styled.div`
     width: 500px;
-    height: 85%;
+    height: 100%;
     ${props => props.theme.FlexCol};
     align-items: center;
     gap: 20px 0;

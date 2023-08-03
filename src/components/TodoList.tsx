@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import Todo from './TodoItem';
+import TodoItem from './TodoItem';
+
 
 
 
@@ -12,13 +13,13 @@ const TodoList = () => {
   const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const todoListGet = localStorage.getItem(ThisDay);
   const todoData = todoListGet ? JSON.parse(todoListGet) : [];
-  
+
 
 
 
   return (
     <TodoListContiner>
-      <Todo />
+      <TodoItem />
     </TodoListContiner>
   )
 }
@@ -26,6 +27,7 @@ const TodoList = () => {
 export default TodoList
 
 const TodoListContiner = styled.div`
+    position: relative;
     width: 95%;
     height: 100%;
     background-color: ${props => props.theme.color2};

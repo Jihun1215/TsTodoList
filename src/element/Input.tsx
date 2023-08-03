@@ -2,18 +2,11 @@ import React from 'react'
 import styled, { css } from "styled-components";
 import { toUp } from '../styles/Animation';
 
-// ButtonProps 타입 정의
+
 type InputProps = {
   children: string,
   sm?: boolean,
 }
-
-
-// export const Button = ({ children, ...props }:ButtonProps) => {
-//   return  <BtnStyle {...props}>{children}</BtnStyle>
-  
-// }
-
 
 export const Input = ({ children, ...props }:InputProps) => {
   return (

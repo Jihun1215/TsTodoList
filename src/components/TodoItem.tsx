@@ -5,6 +5,8 @@ import { toUp } from '../styles/Animation';
 import { Item } from '../types/type';
 import { useRecoilState } from 'recoil';
 import { todoItemState } from "../atoms"
+import Progress from './Progress';
+import { todoListPercen } from "../atoms"
 
 
 interface TodoListBoxProps {
@@ -14,7 +16,9 @@ interface TodoListBoxProps {
 }
 
 const TodoItem = () => {
-  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
+  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState);
+  const [percentage, setPercentage] = useRecoilState<number>(todoListPercen);
+  const [clearTodos, setClearTodos] = useState<Item[]>([]);
 
   // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
   // const today: Date = new Date();
@@ -41,20 +45,26 @@ const TodoItem = () => {
     setTodoItem(newTodos)
   }
 
-  const [clearTodos, setClearTodos] = useState<Item[]>([]);
+  useEffect(() => {
+    // 컴포넌트가 마운트되거나 todoItem이 변경될 때마다 clearTodos를 업데이트
+    const Todos = todoItem.filter((item: any) => item.isDone);
+    setClearTodos(Todos);
+  }, [todoItem]);
+
+  // 성공률을 변환해주는 함수
+  const calculateCompletionPercentage = () => {
+    if (todoItem.length === 0) return 0;
+    const completionPercentage = (clearTodos.length / todoItem.length) * 100;
+    return Math.round(completionPercentage * 100) / 100;
+  };
 
 
   useEffect(() => {
-    const Todos = todoItem.filter((item: any) => item.isDone);
-    setClearTodos(Todos)
-
-  }, [todoItem])
+    setPercentage(calculateCompletionPercentage)
+  }, [calculateCompletionPercentage])
 
 
-  const calculateCompletionPercentage = () => {
-    if (todoItem.length === 0) return 0;
-    return (clearTodos.length / todoItem.length) * 100;
-  };
+
 
   return (
     <>
@@ -75,10 +85,7 @@ const TodoItem = () => {
         ) : <div>없다.</div>
       }
 
-      <TodoPercentBox>
-        <p>{calculateCompletionPercentage()}%</p>
-        <TodoPercent type="range" min="0" max="100" step="10" value={calculateCompletionPercentage()} />
-      </TodoPercentBox>
+      <Progress sm value={percentage} text={`${percentage}%`} />
 
     </>
   );
@@ -88,9 +95,10 @@ export default TodoItem;
 
 
 const TodoItemBox = styled.div<TodoListBoxProps>`
+    position: relative;
     margin-top: 10px;
     width: 90%;
-    height: 4.375rem;
+    height: 70px;
     background-color:#adb5bd;
     animation: ${toUp} 0.25s ease-in-out;
     border-radius: 14px;
@@ -111,22 +119,3 @@ const TodoItemBox = styled.div<TodoListBoxProps>`
     }
 `;
 
-const TodoPercentBox = styled.div`
- position: relative;
- margin: 40px;
- width: 90%;
- height: 4.375rem;
- animation: ${toUp} 0.25s ease-in-out;
- ${props => props.theme.FlexRow};
- ${props => props.theme.FlexCenter};
- > p {
-    position: absolute;
-    top: 5px;
- }
-`;
-
-const TodoPercent = styled.input`
-    border: 1px solid red;
-    width: 50%;
-    height: 30%;
-`;
