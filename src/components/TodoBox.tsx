@@ -6,15 +6,15 @@ import TodoList from './TodoList'
 const TodoBox = () => {
   return (
     <TodoContiner>
-        <TodoForm/>
-        <TodoList/>
+      <TodoForm />
+      <TodoList />
     </TodoContiner>
   )
 }
 
 export default TodoBox
 
-const TodoContiner= styled.div`
+const TodoContiner = styled.div`
     width: 500px;
     height: 85%;
     ${props => props.theme.FlexCol};

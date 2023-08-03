@@ -13,7 +13,7 @@ interface TodoListBoxProps {
   children: React.ReactNode;
 }
 
-const Todo = () => {
+const TodoItem = () => {
   const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
 
   // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
@@ -61,7 +61,7 @@ const Todo = () => {
       {
         todoItem.length > 0 ? (
           todoItem.map((item: any) => {
-            return (<TodoListBox id={item.itemId} isDone={item.isDone}>
+            return (<TodoItemBox id={item.itemId} isDone={item.isDone}>
               <h4>{item.title}</h4>
               <div>
                 <Button sm onClick={() => onClickDeleteTodo(item.itemId)}>삭제</Button>
@@ -70,7 +70,7 @@ const Todo = () => {
                 }
               </div>
 
-            </TodoListBox>)
+            </TodoItemBox>)
           })
         ) : <div>없다.</div>
       }
@@ -84,10 +84,10 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default TodoItem;
 
 
-const TodoListBox = styled.div<TodoListBoxProps>`
+const TodoItemBox = styled.div<TodoListBoxProps>`
     margin-top: 10px;
     width: 90%;
     height: 4.375rem;
