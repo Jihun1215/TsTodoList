@@ -85,8 +85,7 @@ const TodoItem = () => {
         ) : <div>없다.</div>
       }
 
-      <Progress value={percentage} text={`${percentage}%`} />
-
+      <Progress main value={percentage} text={`${percentage}`} />
     </>
   );
 };

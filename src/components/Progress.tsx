@@ -1,49 +1,40 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useRecoilState } from 'recoil';
-import { todoListPercen } from "../atoms"
-import styled, { css } from 'styled-components'
-import { toUp } from '../styles/Animation'
+import styled, { css } from 'styled-components';
+import { toUp } from '../styles/Animation';
 
 type ProGressProps = {
-    value?: number,
-    text?: string,
-    sm?: boolean,
+  value: number;
+  text: string;
+  main?: boolean;
+  // 추가: Progress 컴포넌트에서 사용하지 않는 속성은 제거
 };
 
-export const Progress = ({ ...props }: ProGressProps) => {
-    // console.log(props)
-    const [percentage, setPercentage] = useRecoilState<number>(todoListPercen);
-
-    return (
-        <ProgressStyle>
-            <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                // 선굴기
-                strokeWidth={7}
-            />
-        </ProgressStyle>
-    );
+const Progress = ({ value, text, main }: ProGressProps) => {
+  return (
+    <ProgressStyle main={main}>
+      <CircularProgressbar value={value} text={`${text}%`} />
+    </ProgressStyle>
+  );
 };
+
 export default Progress;
 
-
-const ProgressStyle = styled.div<ProGressProps>`
-     position: absolute;
-     bottom: -20px;
-     width: 70px;
-     height: 100px;
-     cursor: pointer;
-     animation: ${toUp} 0.25s ease-in-out;
-        ${(props) =>
-        props.sm &&
+// 추가: sm 속성이 있으므로 해당 속성을 사용하여 스타일을 설정합니다.
+const ProgressStyle = styled.div<{ main?: boolean }>`
+  position: absolute;
+  width: 60px;
+  height:60px;
+  cursor: pointer;
+  animation: ${toUp} 0.25s ease-in-out;
+       ${(props) =>
+        props.main &&
         css`   
-              width: 200px;
-              height: 200px;
-              position: absolute;
-              bottom: 10px;
-             `};
+              width: 100px;
+              height: 100px;
+              bottom: 2px;
+       `};
+`;
 
-        `;
+// 원하는 스타일을 설정하고, sm 속성에 따라 크기를 변경할 수 있도록 설정하였습니다.
