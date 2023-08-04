@@ -4,7 +4,7 @@ import { Button } from '../element/Button';
 import { toUp } from '../styles/Animation';
 import { Item } from '../types/type';
 import { useRecoilState } from 'recoil';
-import { todoItemState } from "../atoms"
+import { ThisDayState } from "../atoms"
 import Progress from './Progress';
 import { todoListPercen } from "../atoms"
 
@@ -16,7 +16,7 @@ interface TodoListBoxProps {
 }
 
 const TodoItem = () => {
-  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState);
+  const [todoItem, setTodoItem] = useRecoilState<Item[]>(ThisDayState);
   const [percentage, setPercentage] = useRecoilState<number>(todoListPercen);
   const [clearTodos, setClearTodos] = useState<Item[]>([]);
 
@@ -74,7 +74,7 @@ const TodoItem = () => {
             return (<TodoItemBox id={item.itemId} isDone={item.isDone}>
               <h4>{item.title}</h4>
               <div>
-                <Button sm onClick={() => onClickDeleteTodo(item.itemId)}>삭제</Button>
+                <Button size="sm" onClick={() => onClickDeleteTodo(item.itemId)}>삭제</Button>
                 {item.isDone ? <Button istrue onClick={() => onClickChckeTodo(item.itemId)}>되 돌리기</Button>
                   : <Button isfalse onClick={() => onClickChckeTodo(item.itemId)}>성 공</Button>
                 }
@@ -85,7 +85,7 @@ const TodoItem = () => {
         ) : <div>없다.</div>
       }
 
-      <Progress main value={percentage} text={`${percentage}`} />
+      <Progress main="true" value={percentage} text={`${percentage}`} />
     </>
   );
 };

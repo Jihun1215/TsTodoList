@@ -4,7 +4,7 @@ import { Button } from '../element/Button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Item } from '../types/type';
 import { useRecoilState } from 'recoil';
-import { todoItemState } from "../atoms"
+import { ThisDayState } from "../atoms"
 import { v4 as uuidv4 } from 'uuid';
 import { toUp } from '../styles/Animation';
 
@@ -15,7 +15,8 @@ type Fromvalue = {
 }
 
 const TodoForm: React.FC = () => {
-  const [todoItem, setTodoItem] = useRecoilState<Item[]>(todoItemState)
+  const [todoItem, setTodoItem] = useRecoilState<Item[]>(ThisDayState)
+  
   // console.log(todoItem)
 
   const {
@@ -81,8 +82,8 @@ const TodoForm: React.FC = () => {
       </InputWrapper>
 
       {
-        isActive ? <Button sm isactive type='button' >값 입력 X</Button> :
-          <Button sm type="submit" >제출</Button>
+        isActive ? <Button size='sm' opacity="true" type='button' >값 입력 X</Button> :
+          <Button size='sm' type="submit" >제출</Button>
       }
 
 

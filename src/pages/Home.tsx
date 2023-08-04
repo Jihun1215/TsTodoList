@@ -4,12 +4,15 @@ import TodoBox from '../components/TodoBox'
 import Thisweek from '../components/Thisweek'
 import Sidebar from '../components/Sidebar'
 import { DayBeforeStateItem } from '../types/type'
+import { useRecoilState } from 'recoil';
+import { beforeTodoState } from '../atoms'
 
 
 
 const Home = () => {
 
-
+  const [todoItem, setTodoItem] = useRecoilState<number>(beforeTodoState)
+  console.log(todoItem)
 
 
   const dayBeforeState: DayBeforeStateItem[] = [

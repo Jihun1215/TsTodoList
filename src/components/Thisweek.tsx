@@ -35,6 +35,11 @@ const Thisweek = () => {
         </DayBeFore>
       ))}
 
+    <DayBeFore></DayBeFore>
+    <DayBeFore></DayBeFore>
+    <DayBeFore></DayBeFore>
+    <DayBeFore></DayBeFore>
+    
     </ThisWeekContiner>
   )
 }
@@ -44,6 +49,7 @@ export default Thisweek
 const ThisWeekContiner = styled.div`
      width: 500px;
     height: 85%;
+    overflow: scroll;
     ${props => props.theme.FlexCol};
     ${props => props.theme.FlexCenter}
     gap: 20px 0;
@@ -55,7 +61,7 @@ const ThisWeekContiner = styled.div`
 const DayBeFore = styled.div`
   position: relative;
   width: 25rem;
-  height: 5rem;
+  min-height: 5rem;
   ${props => props.theme.FlexRow};
   ${props => props.theme.FlexCenter};
   background-color:#adb5bd;

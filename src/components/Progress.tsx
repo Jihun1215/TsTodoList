@@ -7,7 +7,7 @@ import { toUp } from '../styles/Animation';
 type ProGressProps = {
   value: number;
   text: string;
-  main?: boolean;
+  main?: string;
   // 추가: Progress 컴포넌트에서 사용하지 않는 속성은 제거
 };
 
@@ -22,7 +22,7 @@ const Progress = ({ value, text, main }: ProGressProps) => {
 export default Progress;
 
 // 추가: sm 속성이 있으므로 해당 속성을 사용하여 스타일을 설정합니다.
-const ProgressStyle = styled.div<{ main?: boolean }>`
+const ProgressStyle = styled.div<{ main?: string }>`
   position: absolute;
   width: 60px;
   height:60px;
