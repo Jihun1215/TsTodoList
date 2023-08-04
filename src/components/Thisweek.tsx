@@ -1,16 +1,29 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { DayBeforeStateItem } from '../types/type';
 // import Progress from "./Progress"
 
 const Thisweek = () => {
+
+  const storedData = localStorage.getItem("beforeState");
+  if (storedData) {
+    const parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
+    // parsedData를 사용하여 작업을 수행
+    console.log(parsedData)
+  }
+
+
   return (
     <ThisWeekContiner>
-      5일간 TODOLIST 성공률을 보여주는 형태로 구현해보자!
+      
+  
+
+      {/* 5일간 TODOLIST 성공률을 보여주는 형태로 구현해보자! */}
       {/* <Progress /> */}
-      <DayBeFore>
-      </DayBeFore>
-      <DayBeFore></DayBeFore>
-      <DayBeFore></DayBeFore>
+      {/* <DayBeFore> */}
+      {/* </DayBeFore> */}
+      {/* <DayBeFore></DayBeFore> */}
+      {/* <DayBeFore></DayBeFore> */}
     </ThisWeekContiner>
   )
 }

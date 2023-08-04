@@ -3,10 +3,25 @@ import { styled } from 'styled-components'
 import TodoBox from '../components/TodoBox'
 import Thisweek from '../components/Thisweek'
 import Sidebar from '../components/Sidebar'
+import { DayBeforeStateItem } from '../types/type'
 
 
 
 const Home = () => {
+
+
+
+
+  const dayBeforeState: DayBeforeStateItem[] = [
+    { todoState: ["대", "한", "민", "국", "일"], percent: 20 },
+    { todoState: ["대", "한", "민", "국", "일"], percent: 40 },
+    { todoState: ["대", "한", "민", "국", "일"], percent: 60 },
+    { todoState: ["대", "한", "민", "국", "일"], percent: 80 },
+    { todoState: ["대", "한", "민", "국", "일"], percent: 100 },
+  ];
+  localStorage.setItem("beforeState", JSON.stringify(dayBeforeState))
+
+
   return (
     <>
       <WebViewContainer>
