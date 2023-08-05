@@ -9,14 +9,21 @@ import { recoilPersist } from "recoil-persist";
 //   const todoListGet = localStorage.getItem(ThisDay);
 //   const todoData = todoListGet ? JSON.parse(todoListGet) : [];
 
+
 export const DarkModeToggleState = atom<boolean>({
     key: 'DarkModeToggleState',
     default: false
 });
 
+const { persistAtom } = recoilPersist({
+    key: `${ThisDay}`, //원하는 key 값 입력
+    storage: localStorage,
+  })
+
 export const ThisDayState = atom<Item[]>({
     key: `${ThisDay}`,
-    default: []
+    default: [],
+    effects_UNSTABLE: [persistAtom],
 })
 
 export const todoListPercen = atom<number>({
@@ -24,10 +31,8 @@ export const todoListPercen = atom<number>({
     default: 0,
 })
 
-const { persistAtom } = recoilPersist();
-
-export const beforeTodoState = atom({
-    key: "beforeTodoState",
-    default: [1],
-    effects_UNSTABLE: [persistAtom]
-})
+// export const beforeTodoState = atom({
+//     key: "beforeTodoState",
+//     default: [],
+//     effects_UNSTABLE: [persistAtom]
+// })

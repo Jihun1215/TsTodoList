@@ -5,6 +5,10 @@ export type Item = {
 };
 
 export type DayBeforeStateItem = {
-  todoState: string[];
+  thisDay: string;
   percent: number;
+}
+
+export type anotherDateItem = {
+
 }

@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import { ThisDayState } from "../atoms"
 import Progress from './Progress';
 import { todoListPercen } from "../atoms"
+import { DayBeforeStateItem } from '../types/type';
 
 
 interface TodoListBoxProps {
@@ -19,12 +20,41 @@ const TodoItem = () => {
   const [todoItem, setTodoItem] = useRecoilState<Item[]>(ThisDayState);
   const [percentage, setPercentage] = useRecoilState<number>(todoListPercen);
   const [clearTodos, setClearTodos] = useState<Item[]>([]);
-
+  // console.log(todoItem)
   // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
-  // const today: Date = new Date();
-  // const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-  // const todoListGet = localStorage.getItem(ThisDay);
-  // const todoData = todoListGet ? JSON.parse(todoListGet) : [];
+  const today: Date = new Date();
+  const ThisDay = `${today.getFullYear()}-${today.getMonth() }-${today.getDate()}`;
+  const todoListGet = localStorage.getItem(ThisDay);
+  const todoData = todoListGet ? JSON.parse(todoListGet) : [];
+
+  const dateKey = Object.keys(todoData)[0]?.trim(); // dateKey를 가져올 때, undefined 방지
+
+
+
+  const beforeState = localStorage.getItem("beforeState");
+  const beforeData = beforeState ? JSON.parse(beforeState) : [];
+
+
+ const anotherDate: DayBeforeStateItem = {
+   thisDay: ThisDay, 
+   percent: percentage,
+ };
+
+  useEffect(() => {
+    // 오늘 날짜가 아니면 beforeData에 값을 추가
+    if (dateKey !== ThisDay) {
+      // 새로운 배열로 복사 후 추가
+      const updatedBeforeData = [...beforeData, anotherDate];
+      localStorage.setItem("beforeState", JSON.stringify(updatedBeforeData));
+    }
+  }, [dateKey]);
+
+
+
+
+
+
+
 
   const onClickDeleteTodo = (id: number) => {
 

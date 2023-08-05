@@ -4,20 +4,21 @@ import { DayBeforeStateItem } from '../types/type';
 import Progress from "./Progress"
 
 const Thisweek = () => {
-  
+
   // const storedData = localStorage.getItem("beforeState");
   // if (storedData) {
   //   const parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
   //   // parsedData를 사용하여 작업을 수행
   //   console.log(parsedData)
   // }
+
   const storedData = localStorage.getItem("beforeState");
   let parsedData: DayBeforeStateItem[] = [];
   if (storedData) {
     parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
     console.log(parsedData)
   }
-
+  
 
   return (
     <ThisWeekContiner>
@@ -25,7 +26,7 @@ const Thisweek = () => {
      
       {parsedData.map((item,index) => (
         <DayBeFore key={index}>
-          <DayBeforeDayText>{index+1}일전 TODOLIST 성공률</DayBeforeDayText>
+          <DayBeforeDayText>{item.thisDay} TODOLIST 성공률</DayBeforeDayText>
 
           <DayBeforePercent>
              <Progress value={item.percent} text={`${item.percent}`} />

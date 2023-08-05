@@ -5,23 +5,31 @@ import Thisweek from '../components/Thisweek'
 import Sidebar from '../components/Sidebar'
 import { DayBeforeStateItem } from '../types/type'
 import { useRecoilState } from 'recoil';
-import { beforeTodoState } from '../atoms'
+// import { beforeTodoState } from '../atoms'
 
 
 
 const Home = () => {
 
-  const [todoItem, setTodoItem] = useRecoilState<number>(beforeTodoState)
-  console.log(todoItem)
+  // const [todoItem, setTodoItem] = useRecoilState<number>(beforeTodoState)
+  // console.log(todoItem)
+  // const today: Date = new Date();
+  // const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
 
   const dayBeforeState: DayBeforeStateItem[] = [
-    { todoState: ["대", "한", "민", "국", "일"], percent: 20 },
-    { todoState: ["대", "한", "민", "국", "일"], percent: 40 },
-    { todoState: ["대", "한", "민", "국", "일"], percent: 60 },
-    { todoState: ["대", "한", "민", "국", "일"], percent: 80 },
-    { todoState: ["대", "한", "민", "국", "일"], percent: 100 },
-  ];
+  {
+    thisDay: "2023-08-04", 
+    percent: 20,
+  }
+  ]
+  // const dayBeforeState: DayBeforeStateItem[] = [
+  //   { todoState: ["대", "한", "민", "국", "일"], percent: 20 },
+  //   // { todoState: ["대", "한", "민", "국", "일"], percent: 40 },
+  //   // { todoState: ["대", "한", "민", "국", "일"], percent: 60 },
+  //   // { todoState: ["대", "한", "민", "국", "일"], percent: 80 },
+  //   // { todoState: ["대", "한", "민", "국", "일"], percent: 100 },
+  // ];
   localStorage.setItem("beforeState", JSON.stringify(dayBeforeState))
 
 
@@ -49,7 +57,7 @@ const WebViewContainer = styled.div`
     ${props => props.theme.FlexRow};
     ${props => props.theme.FlexCenter};
     gap: 0px 30px;
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 800px) {
     display: none;
   }
 `;
@@ -63,7 +71,7 @@ const WebViewLine = styled.div`
 const MobileViewContainer = styled.div`
   display: none;
   ${props => props.theme.WH100};
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 800px) {
     display: block;
     ${props => props.theme.FlexRow};
     padding: 1rem;
