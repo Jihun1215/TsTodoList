@@ -26,9 +26,9 @@ const Sidebar = () => {
           mode ? <BsMoon /> : <BsSun />
         }
       </SidebarModeButton>
-      <SidebarGoupButton onClick={onClickScrollToTop}>
+      {/* <SidebarGoupButton onClick={onClickScrollToTop}>
         <AiOutlineArrowUp />
-      </SidebarGoupButton>
+      </SidebarGoupButton> */}
     </SidebarContiner>
   )
 }
@@ -47,8 +47,8 @@ const SidebarContiner = styled.div`
 `;
 
 const SidebarModeButton = styled.button<{ mode: boolean | string }>`
-    width: 3.125rem;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

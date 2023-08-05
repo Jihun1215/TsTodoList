@@ -4,7 +4,7 @@ import { DayBeforeStateItem } from '../types/type';
 import Progress from "./Progress"
 
 const Thisweek = () => {
-
+  
   // const storedData = localStorage.getItem("beforeState");
   // if (storedData) {
   //   const parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
@@ -21,7 +21,7 @@ const Thisweek = () => {
 
   return (
     <ThisWeekContiner>
-      
+        <BeforeTodoListArea>
      
       {parsedData.map((item,index) => (
         <DayBeFore key={index}>
@@ -35,11 +35,11 @@ const Thisweek = () => {
         </DayBeFore>
       ))}
 
-    <DayBeFore></DayBeFore>
-    <DayBeFore></DayBeFore>
-    <DayBeFore></DayBeFore>
-    <DayBeFore></DayBeFore>
-    
+      {/* <DayBeFore></DayBeFore> */}
+      {/* <DayBeFore></DayBeFore>
+      <DayBeFore></DayBeFore>
+      <DayBeFore></DayBeFore> */}
+     </BeforeTodoListArea>
     </ThisWeekContiner>
   )
 }
@@ -47,15 +47,21 @@ const Thisweek = () => {
 export default Thisweek
 
 const ThisWeekContiner = styled.div`
-     width: 500px;
+    width: 500px;
     height: 85%;
     overflow: scroll;
     ${props => props.theme.FlexCol};
     ${props => props.theme.FlexCenter}
-    gap: 20px 0;
     border-radius: 14px;
     background-color: ${props => props.theme.color2};
-   
+`;
+
+const BeforeTodoListArea = styled.div`
+  ${props => props.theme.WH100};
+  ${props => props.theme.FlexCol};
+  ${props => props.theme.FlexCenter};
+  gap: 20px 0;
+  border: 1px solid red;
 `;
 
 const DayBeFore = styled.div`
