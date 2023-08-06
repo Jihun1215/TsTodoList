@@ -17,12 +17,7 @@ const Home = () => {
   // const ThisDay = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
 
-  const dayBeforeState: DayBeforeStateItem[] = [
-  {
-    thisDay: "2023-08-04", 
-    percent: 20,
-  }
-  ]
+  const dayBeforeState: DayBeforeStateItem[] = []
   // const dayBeforeState: DayBeforeStateItem[] = [
   //   { todoState: ["대", "한", "민", "국", "일"], percent: 20 },
   //   // { todoState: ["대", "한", "민", "국", "일"], percent: 40 },

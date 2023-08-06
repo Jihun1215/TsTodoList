@@ -1,24 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { DayBeforeStateItem } from '../types/type';
 import Progress from "./Progress"
 
 const Thisweek = () => {
 
-  // const storedData = localStorage.getItem("beforeState");
-  // if (storedData) {
-  //   const parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
-  //   // parsedData를 사용하여 작업을 수행
-  //   console.log(parsedData)
-  // }
-
   const storedData = localStorage.getItem("beforeState");
   let parsedData: DayBeforeStateItem[] = [];
-  if (storedData) {
-    parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
-    console.log(parsedData)
-  }
+  useEffect(()=>{
+    if (storedData) {
+      parsedData = JSON.parse(storedData) as DayBeforeStateItem[];
+      console.log(parsedData)
+    }
+  },[storedData])
+
   
+  console.log(parsedData); // 두 항목이 콘솔에 표시되는지 확인
 
   return (
     <ThisWeekContiner>
@@ -26,7 +23,7 @@ const Thisweek = () => {
      
       {parsedData.map((item,index) => (
         <DayBeFore key={index}>
-          <DayBeforeDayText>{item.thisDay} TODOLIST 성공률</DayBeforeDayText>
+          <DayBeforeDayText>{item.thisDay} 성공률</DayBeforeDayText>
 
           <DayBeforePercent>
              <Progress value={item.percent} text={`${item.percent}`} />
@@ -36,10 +33,6 @@ const Thisweek = () => {
         </DayBeFore>
       ))}
 
-      {/* <DayBeFore></DayBeFore> */}
-      {/* <DayBeFore></DayBeFore>
-      <DayBeFore></DayBeFore>
-      <DayBeFore></DayBeFore> */}
      </BeforeTodoListArea>
     </ThisWeekContiner>
   )

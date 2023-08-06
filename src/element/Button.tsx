@@ -10,8 +10,8 @@ type ButtonProps = {
   // disabled: string;
   opacity?: string;
   size?: "sm" | "me" | "lg"  // 새로운 size 속성 추가
-  isfalse?: boolean;
-  istrue?: boolean;
+  isfalse?: string;
+  istrue?: string;
 };
 
 export const Button = ({ children, ...props }: ButtonProps) => {

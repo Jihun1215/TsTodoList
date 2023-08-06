@@ -9,6 +9,3 @@ export type DayBeforeStateItem = {
   percent: number;
 }
 
-export type anotherDateItem = {
-
-}

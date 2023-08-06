@@ -23,7 +23,7 @@ const TodoItem = () => {
   // console.log(todoItem)
   // 오늘 저장된 리스트를 가지고 오기 위한 로컬스토리지 키 값
   const today: Date = new Date();
-  const ThisDay = `${today.getFullYear()}-${today.getMonth() }-${today.getDate()}`;
+  const ThisDay = `${today.getFullYear()}-${today.getMonth() +1}-${today.getDate()}`;
   const todoListGet = localStorage.getItem(ThisDay);
   const todoData = todoListGet ? JSON.parse(todoListGet) : [];
 
@@ -42,7 +42,9 @@ const TodoItem = () => {
 
   useEffect(() => {
     // 오늘 날짜가 아니면 beforeData에 값을 추가
-    if (dateKey !== ThisDay) {
+    if (dateKey === ThisDay) {
+      console.log('동일한 날짜입니다')
+    }else{
       // 새로운 배열로 복사 후 추가
       const updatedBeforeData = [...beforeData, anotherDate];
       localStorage.setItem("beforeState", JSON.stringify(updatedBeforeData));
@@ -100,13 +102,13 @@ const TodoItem = () => {
     <>
       {
         todoItem.length > 0 ? (
-          todoItem.map((item: any) => {
+          todoItem.map((item: any,) => {
             return (<TodoItemBox id={item.itemId} isDone={item.isDone}>
               <h4>{item.title}</h4>
               <div>
                 <Button size="sm" onClick={() => onClickDeleteTodo(item.itemId)}>삭제</Button>
-                {item.isDone ? <Button istrue onClick={() => onClickChckeTodo(item.itemId)}>되 돌리기</Button>
-                  : <Button isfalse onClick={() => onClickChckeTodo(item.itemId)}>성 공</Button>
+                {item.isDone ? <Button istrue="true" onClick={() => onClickChckeTodo(item.itemId)}>되 돌리기</Button>
+                  : <Button isfalse="true" onClick={() => onClickChckeTodo(item.itemId)}>성 공</Button>
                 }
               </div>
 
